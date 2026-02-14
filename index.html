@@ -3,27 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You ❤️</title>
+    <title>Te iubesc! ❤️</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="bg-hearts" id="heart-bg"></div>
+
+    <div id="heart-bg"></div>
+
+    <div id="photo-wall" class="hidden">
+        <div class="photo-frame"><img src="pic1.jpeg" alt="Us 1"></div>
+        <div class="photo-frame"><img src="pic2.jpeg" alt="Us 2"></div>
+        <div class="photo-frame"><img src="pic3.jpeg" alt="Us 3"></div>
+        <div class="photo-frame"><img src="pic4.jpeg" alt="Us 4"></div>
+    </div>
 
     <main class="container">
         <section id="page-1">
-            <h1 class="title">Happy Valentine's Day!</h1>
-            <p class="message">I made something special just for you. Click below to see...</p>
-            <button class="btn" onclick="nextPage()">Open My Heart 💌</button>
+            <h1 class="title">Îți mulțumesc că exiști! ❤️</h1>
+            <div class="heart-icon">💌</div>
+            <button class="btn" onclick="nextPage()">Click aici!</button>
         </section>
 
         <section id="page-2" class="hidden">
-            <h1 class="title">To My Favorite Person,</h1>
+            <h1 class="title">Noi doi...</h1>
+            
             <div class="scroll-box">
-                <p>Put your long text here! You can talk about how much you love her, your favorite memories from this year, or why you're lucky to have her.</p>
-                <p>Maybe mention that one time at [Place Name]...</p>
-                <p>I love you more than code! ❤️</p>
+                <p>Hey Didi,</p>
+                <p>Au fost momente grele in viața noastră, am greșit mult și mai presus de toate te-am rănit enorm...</p>
+                <p>Dar îți mulțumesc din suflet pentru susținere si pentru faptul că ești aici mereu.</p>
+                <p>Te iubesc și vreau să știi că îmi faci viața mai bună!</p>
+                
+                <div class="caricature-container">
+                    <img src="caricature.png" alt="Our Caricature" id="main-caricature">
+                </div>
             </div>
+
             <button class="btn secondary" onclick="prevPage()">Go Back</button>
         </section>
     </main>
