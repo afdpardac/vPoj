@@ -15,41 +15,41 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden; /* Prevent side-scrolling on mobile */
 }
 
-/* --- THE DYNAMIC CONTAINER --- */
+/* --- DYNAMIC CONTAINER --- */
 .container {
     background: rgba(255, 255, 255, 0.96);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 2rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
     width: 90%;
-    max-width: 600px;
+    max-width: 500px;
     z-index: 1000;
     position: relative;
-    isolation: isolate;
+    margin: 20px auto;
 }
 
 .scroll-box {
-    max-height: 50vh; /* Limits height based on screen height */
+    max-height: 60vh; /* Responsive height based on screen */
     overflow-y: auto;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
     padding: 0 10px;
     line-height: 1.6;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 #main-caricature {
     width: 100%;
-    max-width: 450px;
+    max-width: 350px;
     height: auto;
     border-radius: 1rem;
     margin-top: 1rem;
 }
 
-/* --- RESPONSIVE PHOTO FRAMES --- */
+/* --- RESPONSIVE PHOTO WALL --- */
 #photo-wall {
     position: fixed;
     inset: 0;
@@ -60,42 +60,50 @@ body {
 .photo-frame {
     position: absolute;
     background: white;
-    padding: 10px 10px 25px 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 5px 5px 15px 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     pointer-events: auto;
-    transition: transform 0.3s ease;
-    /* Responsive width */
-    width: 140px; 
+    transition: all 0.3s ease;
+    width: 100px; /* Smaller default for mobile */
+}
+
+/* Hide or move photos on small mobile screens to prevent overlap */
+@media (max-width: 480px) {
+    .photo-frame {
+        width: 80px; /* Even smaller on iPhone */
+        opacity: 0.6; /* Slight transparency so they don't block text */
+    }
+    .title { font-size: 1.8rem; }
+    .container { padding: 1rem; }
+}
+
+/* Larger screens get larger photos */
+@media (min-width: 768px) {
+    .photo-frame { width: 180px; padding: 10px 10px 25px 10px; }
+    .container { padding: 2.5rem; max-width: 600px; }
+    .title { font-size: 2.8rem; }
 }
 
 .photo-frame img {
     width: 100%;
-    height: 120px;
-    object-fit: cover;
+    height: auto;
     display: block;
 }
 
-/* Desktop sizing for photos */
-@media (min-width: 768px) {
-    .photo-frame { width: 200px; }
-    .photo-frame img { height: 180px; }
-    .title { font-size: 3rem; }
-}
-
 /* --- UI ELEMENTS --- */
-.title { font-family: 'Dancing Script', cursive; font-size: 2rem; color: var(--dark-red); margin: 0; }
+.title { font-family: 'Dancing Script', cursive; color: var(--dark-red); margin: 0; }
 .btn { 
     background: var(--red); 
     color: white; 
     border: none; 
-    padding: 1rem 2rem; 
+    padding: 0.8rem 1.5rem; 
     border-radius: 50px; 
     width: 100%; 
     cursor: pointer; 
-    font-weight: 600; 
-    font-size: 1.1rem;
+    font-weight: 600;
+    font-size: 1rem;
 }
-.secondary { background: none; color: var(--red); border: 2px solid var(--red); margin-top: 1rem; max-width: 200px; }
+.secondary { background: none; color: var(--red); border: 2px solid var(--red); margin-top: 1rem; }
 .hidden { display: none; }
 
 #heart-bg { position: fixed; inset: 0; z-index: 1; }
