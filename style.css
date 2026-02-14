@@ -4,6 +4,8 @@
     --dark-red: #c9184a;
 }
 
+* { box-sizing: border-box; }
+
 body {
     margin: 0;
     padding: 0;
@@ -12,73 +14,90 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
 }
 
-/* Wide Container for a Cinematic Look */
+/* --- THE DYNAMIC CONTAINER --- */
 .container {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
-    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 2rem;
+    border-radius: 2rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
     width: 90%;
-    max-width: 650px;
-    position: relative;
+    max-width: 600px;
     z-index: 1000;
+    position: relative;
     isolation: isolate;
 }
 
 .scroll-box {
-    text-align: center;
-    max-height: 500px;
+    max-height: 50vh; /* Limits height based on screen height */
     overflow-y: auto;
-    margin: 20px 0;
-    padding: 10px;
+    margin: 1.5rem 0;
+    padding: 0 10px;
     line-height: 1.6;
+    font-size: 1.1rem;
 }
 
-/* Larger Caricature */
-.caricature-container { margin-top: 30px; }
 #main-caricature {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
     height: auto;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-radius: 1rem;
+    margin-top: 1rem;
 }
 
-/* Larger Photo Frames */
-#photo-wall { 
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
-    z-index: 10; pointer-events: none; 
+/* --- RESPONSIVE PHOTO FRAMES --- */
+#photo-wall {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
 }
 
-.photo-frame { 
-    position: absolute; background: white; padding: 12px 12px 30px 12px; 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
-    width: 220px; /* Bigger frame */
-    pointer-events: auto; 
-    transition: transform 0.3s ease; 
+.photo-frame {
+    position: absolute;
+    background: white;
+    padding: 10px 10px 25px 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    pointer-events: auto;
+    transition: transform 0.3s ease;
+    /* Responsive width */
+    width: 140px; 
 }
 
-.photo-frame img { 
-    width: 100%; height: 200px; /* Bigger image */
-    object-fit: cover; display: block; 
+.photo-frame img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
 }
 
-/* Tape decoration */
-.photo-frame::after {
-    content: ''; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    width: 60px; height: 25px; background: rgba(255, 255, 255, 0.7);
+/* Desktop sizing for photos */
+@media (min-width: 768px) {
+    .photo-frame { width: 200px; }
+    .photo-frame img { height: 180px; }
+    .title { font-size: 3rem; }
 }
 
-.title { font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: var(--dark-red); }
-.btn { background: var(--red); color: white; border: none; padding: 18px; border-radius: 50px; width: 100%; cursor: pointer; font-weight: 600; font-size: 1.2rem; }
-.secondary { background: none; color: var(--red); border: 2px solid var(--red); max-width: 200px; margin: 10px auto; display: block; }
+/* --- UI ELEMENTS --- */
+.title { font-family: 'Dancing Script', cursive; font-size: 2rem; color: var(--dark-red); margin: 0; }
+.btn { 
+    background: var(--red); 
+    color: white; 
+    border: none; 
+    padding: 1rem 2rem; 
+    border-radius: 50px; 
+    width: 100%; 
+    cursor: pointer; 
+    font-weight: 600; 
+    font-size: 1.1rem;
+}
+.secondary { background: none; color: var(--red); border: 2px solid var(--red); margin-top: 1rem; max-width: 200px; }
 .hidden { display: none; }
 
-#heart-bg { position: fixed; top: 0; z-index: 1; }
-.floating-heart { position: absolute; color: var(--pink); animation: floatUp 4s linear infinite; }
-@keyframes floatUp { 0% { transform: translateY(110vh); } 100% { transform: translateY(-10vh); } }
+#heart-bg { position: fixed; inset: 0; z-index: 1; }
+.floating-heart { position: absolute; color: var(--pink); animation: floatUp 5s linear infinite; }
+@keyframes floatUp { 0% { transform: translateY(105vh); } 100% { transform: translateY(-10vh); } }

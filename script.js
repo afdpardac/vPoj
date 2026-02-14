@@ -13,22 +13,27 @@ function prevPage() {
 
 function scatterPhotos() {
     const frames = document.querySelectorAll('.photo-frame');
-    // Extreme corner zones for larger photos
-    const zones = [
-        { t: [2, 10], l: [2, 5] },   // Top Left
-        { t: [2, 10], l: [85, 93] },  // Top Right
-        { t: [80, 88], l: [2, 5] },   // Bottom Left
-        { t: [80, 88], l: [85, 93] }  // Bottom Right
+    const isMobile = window.innerWidth < 768;
+
+    // Defined zones based on device type
+    const zones = isMobile ? [
+        { t: 5, l: 5 },   // Top Left
+        { t: 5, l: 60 },  // Top Right
+        { t: 75, l: 5 },  // Bottom Left
+        { t: 75, l: 60 }  // Bottom Right
+    ] : [
+        { t: 10, l: 10 }, // Top Left
+        { t: 10, l: 80 }, // Top Right
+        { t: 70, l: 10 }, // Bottom Left
+        { t: 70, l: 80 }  // Bottom Right
     ];
 
     frames.forEach((frame, index) => {
         const zone = zones[index];
-        const rTop = Math.floor(Math.random() * (zone.t[1] - zone.t[0])) + zone.t[0];
-        const rLeft = Math.floor(Math.random() * (zone.l[1] - zone.l[0])) + zone.l[0];
         const rDeg = Math.floor(Math.random() * 20) - 10;
         
-        frame.style.top = rTop + "%";
-        frame.style.left = rLeft + "%";
+        frame.style.top = zone.t + (Math.random() * 5) + "%";
+        frame.style.left = zone.l + (Math.random() * 5) + "%";
         frame.style.transform = `rotate(${rDeg}deg)`;
     });
 }
@@ -40,6 +45,6 @@ function createHeart() {
     heart.style.left = Math.random() * 100 + 'vw';
     heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
     document.getElementById('heart-bg').appendChild(heart);
-    setTimeout(() => heart.remove(), 4000);
+    setTimeout(() => heart.remove(), 5000);
 }
 setInterval(createHeart, 400);
