@@ -15,35 +15,35 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-x: hidden; /* Prevent side-scrolling on mobile */
+    overflow: hidden;
+    touch-action: manipulation; /* Improves mobile tap response */
 }
 
-/* --- DYNAMIC CONTAINER --- */
+/* --- THE MAIN UI CONTAINER --- */
 .container {
-    background: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.98);
     padding: 1.5rem;
     border-radius: 2rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     text-align: center;
     width: 90%;
     max-width: 500px;
-    z-index: 1000;
+    z-index: 999; /* Higher than photos */
     position: relative;
-    margin: 20px auto;
+    isolation: isolate;
 }
 
 .scroll-box {
-    max-height: 60vh; /* Responsive height based on screen */
+    max-height: 50vh;
     overflow-y: auto;
     margin: 1rem 0;
     padding: 0 10px;
     line-height: 1.6;
-    font-size: 1rem;
 }
 
 #main-caricature {
     width: 100%;
-    max-width: 350px;
+    max-width: 400px;
     height: auto;
     border-radius: 1rem;
     margin-top: 1rem;
@@ -54,7 +54,7 @@ body {
     position: fixed;
     inset: 0;
     z-index: 10;
-    pointer-events: none;
+    pointer-events: none; /* CRITICAL: Allows clicks to pass through to buttons */
 }
 
 .photo-frame {
@@ -62,26 +62,9 @@ body {
     background: white;
     padding: 5px 5px 15px 5px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    pointer-events: auto;
-    transition: all 0.3s ease;
-    width: 100px; /* Smaller default for mobile */
-}
-
-/* Hide or move photos on small mobile screens to prevent overlap */
-@media (max-width: 480px) {
-    .photo-frame {
-        width: 80px; /* Even smaller on iPhone */
-        opacity: 0.6; /* Slight transparency so they don't block text */
-    }
-    .title { font-size: 1.8rem; }
-    .container { padding: 1rem; }
-}
-
-/* Larger screens get larger photos */
-@media (min-width: 768px) {
-    .photo-frame { width: 180px; padding: 10px 10px 25px 10px; }
-    .container { padding: 2.5rem; max-width: 600px; }
-    .title { font-size: 2.8rem; }
+    pointer-events: auto; /* Photos can still be interacted with if needed */
+    width: 90px;
+    transition: transform 0.3s ease;
 }
 
 .photo-frame img {
@@ -90,21 +73,35 @@ body {
     display: block;
 }
 
-/* --- UI ELEMENTS --- */
+/* --- MEDIA QUERIES FOR DYNAMIC SIZING --- */
+@media (min-width: 768px) {
+    .container { padding: 2.5rem; max-width: 600px; }
+    .photo-frame { width: 180px; padding: 10px 10px 25px 10px; }
+    .title { font-size: 3rem; }
+}
+
+@media (max-width: 480px) {
+    .title { font-size: 1.8rem; }
+    .photo-frame { width: 85px; opacity: 0.7; }
+}
+
+/* --- BUTTONS & UI --- */
 .title { font-family: 'Dancing Script', cursive; color: var(--dark-red); margin: 0; }
 .btn { 
     background: var(--red); 
     color: white; 
     border: none; 
-    padding: 0.8rem 1.5rem; 
+    padding: 1rem 1.5rem; 
     border-radius: 50px; 
     width: 100%; 
     cursor: pointer; 
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 600; 
+    font-size: 1.1rem;
+    display: block;
+    margin-top: 10px;
 }
-.secondary { background: none; color: var(--red); border: 2px solid var(--red); margin-top: 1rem; }
-.hidden { display: none; }
+.secondary { background: none; color: var(--red); border: 2px solid var(--red); max-width: 200px; margin: 1rem auto 0 auto; }
+.hidden { display: none !important; }
 
 #heart-bg { position: fixed; inset: 0; z-index: 1; }
 .floating-heart { position: absolute; color: var(--pink); animation: floatUp 5s linear infinite; }
