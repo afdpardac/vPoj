@@ -1,0 +1,78 @@
+:root {
+    --pink: #ffb7c5;
+    --red: #ff4d6d;
+    --dark-red: #c9184a;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #fff0f3;
+    color: var(--dark-red);
+    overflow: hidden; /* Keeps hearts from creating scrollbars */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 85%;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.scroll-box {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 1.5rem 0;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.btn {
+    background-color: var(--red);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn:active { transform: scale(0.95); }
+
+.hidden { display: none; }
+
+/* Heart Animation */
+.bg-hearts {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    color: var(--pink);
+    font-size: 20px;
+    animation: float 5s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}

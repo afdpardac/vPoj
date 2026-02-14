@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-hearts" id="heart-bg"></div>
+
+    <main class="container">
+        <section id="page-1">
+            <h1 class="title">Happy Valentine's Day!</h1>
+            <p class="message">I made something special just for you. Click below to see...</p>
+            <button class="btn" onclick="nextPage()">Open My Heart 💌</button>
+        </section>
+
+        <section id="page-2" class="hidden">
+            <h1 class="title">To My Favorite Person,</h1>
+            <div class="scroll-box">
+                <p>Put your long text here! You can talk about how much you love her, your favorite memories from this year, or why you're lucky to have her.</p>
+                <p>Maybe mention that one time at [Place Name]...</p>
+                <p>I love you more than code! ❤️</p>
+            </div>
+            <button class="btn secondary" onclick="prevPage()">Go Back</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
